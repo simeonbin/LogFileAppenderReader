@@ -18,17 +18,17 @@ import java.util.*;
 
 class LogFileAppenderReader extends JFrame {
   // Text file info
-  private JTextField jtfFilename = new JTextField();
-  private JTextArea jtaFile = new JTextArea();
+  private final JTextField jtfFilename = new JTextField();
+  private final JTextArea jtaFile = new JTextArea();
 
   
   static JTextField jtfReaderTimeInterval = new JTextField(); 
-  private JTextField jtfAppenderTimeInterval = new JTextField();
+  private final JTextField jtfAppenderTimeInterval = new JTextField();
   
   static JTextArea jtaTableName = new JTextArea();
 
-  private JButton jbtViewFile = new JButton("View Log File");
-  private JButton jbtCopy = new JButton("Log Reader in Time Interval ");
+  private final JButton jbtViewFile = new JButton("View Log File");
+  private final JButton jbtCopy = new JButton("Log Reader in Time Interval ");
   private JLabel jlblStatus = new JLabel();
 
   @SuppressWarnings("OverridableMethodCallInConstructor")
@@ -100,7 +100,7 @@ class LogFileAppenderReader extends JFrame {
     jPanel5.setBorder(new TitledBorder("Log File Severity Messages"));
     jPanel5.add(jbtCopy, BorderLayout.SOUTH);
     jPanel5.add(jPanel3, BorderLayout.CENTER);
- //   jPanel5.add(jPanel4, BorderLayout.CENTER);
+ 
     add(jlblStatus, BorderLayout.SOUTH);
         
     add(new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
@@ -128,7 +128,7 @@ class LogFileAppenderReader extends JFrame {
       // Use a Scanner to read text from the file
   //    input = new Scanner(new File(jtfFilename.getText().trim()));
   
-  input = new Scanner(new File("testLogFile.log" ) );
+    input = new Scanner(new File("testLogFile.log" ) );
 
       // Read a line and append the line to the text area
       while (input.hasNext())

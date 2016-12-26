@@ -21,7 +21,7 @@ import javax.swing.JFrame;
  
 /**
  * 
- * @author http://Crunchify.com
+ * @author simeon
  */
  public class LogFile_Appender_Reader {
     // static LogFileReader logFileReader = null;
@@ -35,26 +35,14 @@ import javax.swing.JFrame;
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
  
-//		ExecutorService logFileExecutor = Executors.newFixedThreadPool(6);
-// 
 		String filePath_Test2 = System.getProperty("user.dir");  
                 String filePath_Test = filePath_Test2 + "\\testLogFile.log";
 // String filePath = "C:\\Users\\Simeon\\Documents\\NetBeansProjects\\LogFileAppenderReader\\testLogFile.log";
                 String filePath = filePath_Test;
-//		LogFileTailer logFileTailer = new LogFileTailer(filePath, 2000);
-//                LogFileReader logFileReader =  new LogFileReader(filePath, 1000);
                 
                 Runnable logFileTailer = new LogFileTailer(filePath, 1000);
                 Runnable logFileReader =  new LogFileReader(filePath, 150000);
-//                
-//		// Start running log file tailer on testLogFile.log file
-//		logFileExecutor.execute(logFileTailer);
-//                           
-//		// Start pumping data to file testLogFile.log file
-//		LogFileTailer.appendData(filePath, true, 5000);
-//                
-//                 logFileExecutor.execute(logFileReader);
-//                logFileExecutor.shutdown();
+
                 Thread  thread1 = new Thread(logFileTailer, "Log File Appender Thread");
                 Thread  thread2 = new Thread(logFileReader, "Log File Reader Thread-2");
                     
@@ -62,11 +50,7 @@ import javax.swing.JFrame;
                 thread2.start();
 
                 LogFileTailer.appendData(filePath, true, 5000);
-                
-    //           RAReadLogFile RAR =  new RAReadLogFile();
-//  File logFile = new File("testLogFile.log");
-//  RAR.ReadFile(logFile);
- 
+   
 	}
 
      
@@ -132,11 +116,11 @@ import javax.swing.JFrame;
 
         
         /**
-	 * Use appendData method to add new line to file, so above tailer method can print the same in Eclipse Console
+	 * Use appendData method to add new line to file, so above tailer method can print the same in Netbeans (Eclipse) Console
 	 * 
 	 * @param filePath
 	 * @param shouldIRun
-	 * @param crunchifyRunEveryNSeconds
+	 * @param logFileRunEveryNSeconds
 	 */
 	private static synchronized void appendData(String filePath, boolean shouldIRun, int logFileRunEveryNSeconds) {
 		FileWriter fileWritter;
@@ -155,8 +139,7 @@ import javax.swing.JFrame;
                                 else if (rand <= 0.66) strSeverity="WARNING";
                                      else strSeverity = "ERROR";                                
                                 
-			//	String data = "\nCrunchify.log file content: " + Math.random();
-                        	String data = "\n" + timestamp + " " + strSeverity + "  " + System.currentTimeMillis();
+			      	String data = "\n" + timestamp + " " + strSeverity + "  " + System.currentTimeMillis();
                                 
 				bufferWritter.write(data);
 				bufferWritter.close();
@@ -166,11 +149,8 @@ import javax.swing.JFrame;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
- 
-	}
- 
-	
-}
+ 	}
+     }
      
 
 public static class LogFileReader implements Runnable {
@@ -219,9 +199,8 @@ public static class LogFileReader implements Runnable {
                                 
 				if (fileLength > lastKnownPositionRead) {
                                                                      
-                             //       try ( // Reading and writing file
-                                        RandomAccessFile readFileAccess = new RandomAccessFile(logFile, "r") ;
-                              //          readFileAccess.seek(lastKnownPositionRead);
+                                    RandomAccessFile readFileAccess = new RandomAccessFile(logFile, "r") ;
+                              
                                         readFileAccess.seek(0);
                                         String logFileLine; //= null;
                                         

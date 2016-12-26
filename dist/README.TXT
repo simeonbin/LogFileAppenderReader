@@ -31,11 +31,10 @@ button, the update of Severities' numbers happens anyway every 150 seconds. It i
 it could easily be made so. There is plenty (real estate) space left for that reason in the Swing window.
 
 The Log File name is testLogFile.log and it resides at the root of the Netbeans project. It could be anywhere 
-and it could be configurable.
+and it could be configurable. It gets created at first, if it does not exist.
 
 The Reader is somewhat delayed in the text area update by the fact that prints info to Console about results 
 found in log file.
-
 
 
 Notes:
