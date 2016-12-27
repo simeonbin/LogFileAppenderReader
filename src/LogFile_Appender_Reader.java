@@ -172,6 +172,14 @@ public static class LogFileReader implements Runnable {
                 infoCounter=0; warningCounter=0; errorCounter=0;
                 severityLevelString = ""; 
                 readerTimeInterval = Integer.valueOf(LogFileAppenderReader.jtfReaderTimeInterval.getText());
+                if (readerTimeInterval < 5) {
+                    readerTimeInterval = 5;
+                    LogFileAppenderReader.jtfReaderTimeInterval.setText(String.valueOf(readerTimeInterval));
+                }
+                else if (readerTimeInterval > 86400) {
+                    readerTimeInterval = 86400;
+                    LogFileAppenderReader.jtfReaderTimeInterval.setText(String.valueOf(readerTimeInterval));
+                }
 	}
 
         LogFileReader(File filepath, int i) {

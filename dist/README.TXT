@@ -19,6 +19,10 @@ and distribute the ZIP file.
 Press 'View Log File' Button to View the current Log file in the text area.
 Press 'Log Reader in Time Interval' to show number of Severities {INFO, WARNING, ERROR} during last Time
 Interval, initialized to 60 seconds. It is configurable from text field 'Reader Time Interval'.
+It has a Range of 5 seconds to 86400 seconds (24 hour day). If changed it picks up new (validated) value 
+next time "Reader" thread is run {by clicking the Reader button or at the 2.5 minute mark when Reader thread 
+is run anyway}
+
 The text field 'Appender Time Interval' is not yet configurable.
 
 There are three (3) Threads triggered by the application. 
